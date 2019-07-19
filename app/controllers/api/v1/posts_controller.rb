@@ -1,20 +1,27 @@
 # frozen_string_literal: true
 
-class Api::V1::PostsController < ApplicationController
-  respond_to :json
+  class Api::V1::PostsController < ApplicationController
 
   def create
-    post = Post.new(post_params)
-    if post.save
-      render json: '{"success": "200/201 OK!"}'
-    else render json: '{"error", "Invalid values"}'
-    end
-  end
+     @post = Post.create(post_params)
+
+     if @post.save
+       render status: 201, json: {
+         success: true,
+         post: @post
+       }
+     else
+       render_error(400, @post)
+     end
+   end
 
   def index
-    posts = Post.all
-    render json: posts
-  end
+    @posts = Post.all
+   render status: 200, json: {
+     success: true,
+     posts: @posts
+   }
+ end
 
   private
 
