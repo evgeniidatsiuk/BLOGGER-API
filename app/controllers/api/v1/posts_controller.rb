@@ -47,7 +47,7 @@ class Api::V1::PostsController < ApplicationController
   private
 
   def find_post
-    @post = Pist.find_by_id(params[:id])
+    @post = Post.find_by_id(params[:id])
   rescue StandardError => e
     @error = e.message
     render_error(400, nil, @error)
