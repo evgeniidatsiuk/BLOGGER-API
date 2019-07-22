@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::PostsController < ApplicationController\
+class Api::V1::PostsController < ApplicationController
   before_action :find_post, except: %i[index create]
 
   def create
