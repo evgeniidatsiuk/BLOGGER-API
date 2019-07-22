@@ -5,7 +5,6 @@ class Api::V1::PostsController < ApplicationController
 
   def create
     @post = Post.create(post_params)
-
     if @post.save
       render status: 201, json: {
         success: true,
@@ -36,10 +35,13 @@ class Api::V1::PostsController < ApplicationController
  end
 
   def destroy
-    @post.destroy
-    render status: 200, json: {
-      success: true
-    }
+    if @post.destroy
+      render status: 200, json: {
+        success: true
+      }
+    else
+      render_error(400, @post)
+    end
   end
 
   private
