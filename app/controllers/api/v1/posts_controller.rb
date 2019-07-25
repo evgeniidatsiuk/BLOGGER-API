@@ -44,6 +44,13 @@ class Api::V1::PostsController < ApplicationController
     end
   end
 
+  def show
+    render status: 200, json: {
+     success: true,
+     post: @post
+   }
+  end
+
   private
 
   def find_post
