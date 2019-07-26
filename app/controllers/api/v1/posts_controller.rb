@@ -19,7 +19,7 @@ class Api::V1::PostsController < ApplicationController
     @posts = Post.all
     render status: 200, json: {
       success: true,
-      posts: @posts.as_json(only:[:id, :title, :body])
+      posts: @posts
     }
   end
 
