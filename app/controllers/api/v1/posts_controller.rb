@@ -2,7 +2,7 @@
 
 class Api::V1::PostsController < ApplicationController
   before_action :find_post, except: %i[index create]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[index]
 
   def create
     @post = current_user.posts.build(post_params)
