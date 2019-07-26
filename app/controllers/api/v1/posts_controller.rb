@@ -2,9 +2,10 @@
 
 class Api::V1::PostsController < ApplicationController
   before_action :find_post, except: %i[index create]
+  before_action :authenticate_user!
 
   def create
-    @post = Post.create(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       render status: 201, json: {
         success: true,
@@ -61,6 +62,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:user_id, :title, :body)
   end
 end
