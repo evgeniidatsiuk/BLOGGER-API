@@ -25,7 +25,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    if current_user.post && @post.update(post_params)
+    if current_user == @post.user && @post.update(post_params)
       render status: 200, json: {
         success: true,
         post: @post
@@ -36,7 +36,7 @@ class Api::V1::PostsController < ApplicationController
  end
 
   def destroy
-    if current_user.post && @post.destroy
+    if current_user == @post.user && @post.destroy
       render status: 200, json: {
         success: true
       }
