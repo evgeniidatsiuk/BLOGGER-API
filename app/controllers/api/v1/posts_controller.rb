@@ -2,7 +2,7 @@
 
 class Api::V1::PostsController < ApplicationController
   before_action :find_post, except: %i[index create]
-  before_action :authenticate_user!, except: %i[index]
+  before_action :authenticate_user!, except: %i[index show]
 
   def create
     @post = current_user.posts.build(post_params)
@@ -25,7 +25,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    if current_user.post && @post.update(post_params)
       render status: 200, json: {
         success: true,
         post: @post
@@ -36,7 +36,7 @@ class Api::V1::PostsController < ApplicationController
  end
 
   def destroy
-    if @post.destroy
+    if current_user.post && @post.destroy
       render status: 200, json: {
         success: true
       }
