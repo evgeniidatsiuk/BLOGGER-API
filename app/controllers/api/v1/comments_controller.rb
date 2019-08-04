@@ -4,9 +4,9 @@ class Api::V1::CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post = Post.find_by_id(params[:post_id])
-    params[:comment][:post_id] = @post.id
     comment = current_user.comments.build(comment_params)
+    p 'ahahah'
+    p comment
     if comment.save
       render status: 201, json: {
         success: true,
@@ -33,7 +33,7 @@ class Api::V1::CommentsController < ApplicationController
       like = @comment.likes.create(user_id: current_user.id)
       render status: 200, json: {
         success: true,
-        comment: comment
+        like: like
       }
     else
       @like = @comment.likes.find_by(user_id: current_user.id)
@@ -47,11 +47,11 @@ end
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :text, :post_id)
+    params.require(:comment).permit(:user_id, :text, :object_type, :object_id)
   end
 
   def comment
-    @comment ||= current_user.comments.find_by(id: params[:post_id])
+    @comment ||= current_user.comments.find_by(id: params[:id])
     @comment ||= Comment.new
   end
 end
