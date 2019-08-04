@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :posts, dependent: :destroy #or null
+  has_many :likes, as: :object,  dependent: :destroy
+
 end
