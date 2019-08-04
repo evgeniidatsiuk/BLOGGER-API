@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: %i[index show]
-      resources :posts, except: %i[edit]
-      post 'posts/:id/likes', to: 'posts#like'
+      resources :posts, except: %i[edit] do
+        resources :comments, only: %i[create destroy]
+      end
+      post 'posts/:id/likes',              to: 'posts#like'
+      post 'posts/:id/comments/:id/likes', to: 'comments#like'
     end
   end
 end
