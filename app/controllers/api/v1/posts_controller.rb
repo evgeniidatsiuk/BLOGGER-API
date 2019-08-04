@@ -47,9 +47,25 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     render status: 200, json: {
-     success: true,
-     post: @post
-   }
+      success: true,
+      post: @post
+    }
+  end
+
+  def like
+    if !@post.likes.find_by(user_id: current_user.id)
+      like = @post.likes.create(user_id: current_user.id)
+      render status: 200, json: {
+        success: true,
+        post: like
+      }
+    else
+      @like = @post.likes.find_by(user_id: current_user.id)
+      @like.destroy
+      render status: 200, json: {
+        success: true
+      }
+    end
   end
 
   private
