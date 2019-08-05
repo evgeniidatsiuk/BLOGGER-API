@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'comments/:id/likes',           to: 'comments#like'
       get 'posts/:id/likes',               to: 'posts#likes'
       get 'comments/:id/likes',            to: 'comments#likes'
+      get 'liked',                         to: 'posts#liked_posts'
     end
   end
 end

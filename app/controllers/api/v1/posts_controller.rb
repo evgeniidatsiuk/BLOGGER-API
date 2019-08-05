@@ -78,6 +78,14 @@ class Api::V1::PostsController < ApplicationController
     }
   end
 
+  def liked_posts
+    @posts = Post.where(user_id: current_user.id).joins(:likes) #Like.where(user_id: current_user.id, object_type: "Post")
+    render status: 200, json: {
+      success: true,
+      posts: @posts
+    }
+  end
+
   private
 
   def find_post
