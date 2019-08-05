@@ -52,7 +52,7 @@ class Api::V1::PostsController < ApplicationController
       likes_count: @post.likes.count,
       comments: @post.comments,
       comments_count: @post.comments.count
-    }
+      }
   end
 
   def like
