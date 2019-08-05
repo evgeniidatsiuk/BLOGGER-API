@@ -32,7 +32,7 @@ class Api::V1::CommentsController < ApplicationController
       like = @comment.likes.create(user_id: current_user.id)
       render status: 200, json: {
         success: true,
-        likes: @comment.likes
+        like: like
       }
     else
       like = @comment.likes.find_by(user_id: current_user.id)
@@ -46,7 +46,8 @@ class Api::V1::CommentsController < ApplicationController
   def likes
       render status: 200, json: {
         success: true,
-        like: @comment.likes
+        likes: @comment.likes,
+        likes_count: @comment.likes.count
       }
   end
 
