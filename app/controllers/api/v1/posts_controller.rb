@@ -18,10 +18,10 @@ class Api::V1::PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    render status: 200, json: {
-      success: true,
-      posts: @posts
-    }
+      render status: 200, json: {
+        success: true,
+        posts: @posts
+      }
   end
 
   def update
@@ -48,7 +48,8 @@ class Api::V1::PostsController < ApplicationController
   def show
     render status: 200, json: {
       success: true,
-      post: @post
+      post: @post,
+      likes: @post.likes.count
     }
   end
 
