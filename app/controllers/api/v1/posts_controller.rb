@@ -2,7 +2,7 @@
 
 class Api::V1::PostsController < ApplicationController
   before_action :find_post, except: %i[index create]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show likes]
 
   def create
     @post = current_user.posts.build(post_params)
@@ -18,10 +18,10 @@ class Api::V1::PostsController < ApplicationController
 
   def index
     @posts = Post.all
-      render status: 200, json: {
-        success: true,
-        posts: @posts
-      }
+    render status: 200, json: {
+      success: true,
+      posts: @posts
+    }
   end
 
   def update
@@ -68,6 +68,13 @@ class Api::V1::PostsController < ApplicationController
         success: true
       }
     end
+  end
+
+  def likes
+    render status: 200, json: {
+      success: true,
+      like: @post.likes
+    }
   end
 
   private

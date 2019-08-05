@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :comments, only: %i[create destroy]
       post 'posts/:id/likes',              to: 'posts#like'
       post 'comments/:id/likes',           to: 'comments#like'
-
+      get 'posts/:id/likes',               to: 'posts#likes'
     end
   end
 end
