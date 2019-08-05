@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::CommentsController < ApplicationController
-  before_action :authenticate_user!
+ before_action :authenticate_user!, except: %i[likes]
+ before_action :find_comment, except: %i[create]
 
   def create
     comment = current_user.comments.build(comment_params)
@@ -40,7 +41,14 @@ class Api::V1::CommentsController < ApplicationController
         success: true
       }
     end
-end
+  end
+
+  def likes
+      render status: 200, json: {
+        success: true,
+        like: @comment.likes
+      }
+  end
 
   private
 
@@ -51,5 +59,9 @@ end
   def comment
     @comment ||= current_user.comments.find_by(id: params[:id])
     @comment ||= Comment.new
+  end
+
+  def find_comment
+    @comment = Comment.find_by_id(params[:id])
   end
 end
