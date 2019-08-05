@@ -49,7 +49,8 @@ class Api::V1::PostsController < ApplicationController
     render status: 200, json: {
       success: true,
       post: @post,
-      likes: @post.likes.count
+      likes: @post.likes.count,
+      comments: @post.comments
     }
   end
 

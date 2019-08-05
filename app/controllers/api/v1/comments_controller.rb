@@ -34,8 +34,8 @@ class Api::V1::CommentsController < ApplicationController
         like: like
       }
     else
-      @like = @comment.likes.find_by(user_id: current_user.id)
-      @like.destroy
+      like = @comment.likes.find_by(user_id: current_user.id)
+      like.destroy
       render status: 200, json: {
         success: true
       }
