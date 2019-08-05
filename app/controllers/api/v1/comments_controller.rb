@@ -5,8 +5,6 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     comment = current_user.comments.build(comment_params)
-    p 'ahahah'
-    p comment
     if comment.save
       render status: 201, json: {
         success: true,
