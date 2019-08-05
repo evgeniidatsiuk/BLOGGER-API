@@ -54,7 +54,9 @@ class Api::V1::CommentsController < ApplicationController
   def show
     render status: 200, json: {
       success: true,
-      comments: @comment.comments
+      comments: @comment.comments,
+      likes_count: @comment.likes.count,
+      likes: @comment.likes
     }
   end
 
