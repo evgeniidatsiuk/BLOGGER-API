@@ -59,7 +59,7 @@ class Api::V1::PostsController < ApplicationController
       like = @post.likes.create(user_id: current_user.id)
       render status: 200, json: {
         success: true,
-        like: like
+        like: @post.likes
       }
     else
       @like = @post.likes.find_by(user_id: current_user.id)
