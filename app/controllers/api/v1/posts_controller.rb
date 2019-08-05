@@ -17,7 +17,7 @@ class Api::V1::PostsController < ApplicationController
    end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(10)
     render status: 200, json: {
       success: true,
       posts: @posts
