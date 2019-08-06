@@ -52,7 +52,7 @@ class Api::V1::PostsController < ApplicationController
       likes_count: @post.likes.count,
       comments: @post.comments,
       comments_count: @post.comments.count
-      }
+    }
   end
 
   def like
@@ -79,7 +79,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def liked_posts
-    @posts = Post.where(user_id: current_user.id).joins(:likes) #Like.where(user_id: current_user.id, object_type: "Post")
+    @posts = Post.where(user_id: current_user.id).joins(:likes) # Like.where(user_id: current_user.id, object_type: "Post")
     render status: 200, json: {
       success: true,
       posts: @posts
