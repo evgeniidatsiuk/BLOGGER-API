@@ -14,7 +14,8 @@ class Api::V1::UsersController < ApplicationController
     render status: 200,
     json: {
        success: true,
-       user: @user
+       user: @user,
+       posts: Post.where(user_id: @user.id).page(params[:page]).per(10)
      }
   end
 
