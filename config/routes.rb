@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: %i[index show]
       resources :posts, except: %i[edit]
-      resources :comments, only: %i[create destroy show]
+      resources :comments, only: %i[create destroy show update]
       post 'posts/:id/likes',              to: 'posts#like'
       post 'comments/:id/likes',           to: 'comments#like'
       get 'posts/:id/likes',               to: 'posts#likes'

@@ -1,0 +1,48 @@
+do /home/x/Downloads/api/bin/bundle exec /home/x/.rvm/rubies/ruby-2.6.0/bin/ruby /home/x/Downloads/api/bin/rake routes --trace 
+Ruby enVironment Manager 1.29.7 (latest) (c) 2009-2017 Michal Papis, Piotr Kuczynski, Wayne E. Seguin
+
+                    Prefix Verb     URI Pattern                                                                              Controller#Action
+    apipie_apipie_checksum GET      /apipie/apipie_checksum(.:format)                                                        apipie/apipies#apipie_checksum {:format=>/json/}
+             apipie_apipie GET      /apipie(/:version)(/:resource)(/:method)(.:format)                                       apipie/apipies#index {:version=>/[^\/]+/, :resource=>/[^\/]+/, :method=>/[^\/]+/}
+          new_user_session GET      /api/v1/auth/sign_in(.:format)                                                           devise_token_auth/sessions#new
+              user_session POST     /api/v1/auth/sign_in(.:format)                                                           devise_token_auth/sessions#create
+      destroy_user_session DELETE   /api/v1/auth/sign_out(.:format)                                                          devise_token_auth/sessions#destroy
+         new_user_password GET      /api/v1/auth/password/new(.:format)                                                      devise_token_auth/passwords#new
+        edit_user_password GET      /api/v1/auth/password/edit(.:format)                                                     devise_token_auth/passwords#edit
+             user_password PATCH    /api/v1/auth/password(.:format)                                                          devise_token_auth/passwords#update
+                           PUT      /api/v1/auth/password(.:format)                                                          devise_token_auth/passwords#update
+                           POST     /api/v1/auth/password(.:format)                                                          devise_token_auth/passwords#create
+  cancel_user_registration GET      /api/v1/auth/cancel(.:format)                                                            devise_token_auth/registrations#cancel
+     new_user_registration GET      /api/v1/auth/sign_up(.:format)                                                           devise_token_auth/registrations#new
+    edit_user_registration GET      /api/v1/auth/edit(.:format)                                                              devise_token_auth/registrations#edit
+         user_registration PATCH    /api/v1/auth(.:format)                                                                   devise_token_auth/registrations#update
+                           PUT      /api/v1/auth(.:format)                                                                   devise_token_auth/registrations#update
+                           DELETE   /api/v1/auth(.:format)                                                                   devise_token_auth/registrations#destroy
+                           POST     /api/v1/auth(.:format)                                                                   devise_token_auth/registrations#create
+api_v1_auth_validate_token GET      /api/v1/auth/validate_token(.:format)                                                    devise_token_auth/token_validations#validate_token
+       api_v1_auth_failure GET      /api/v1/auth/failure(.:format)                                                           devise_token_auth/omniauth_callbacks#omniauth_failure
+                           GET      /api/v1/auth/:provider/callback(.:format)                                                devise_token_auth/omniauth_callbacks#omniauth_success
+                           GET|POST /omniauth/:provider/callback(.:format)                                                   devise_token_auth/omniauth_callbacks#redirect_callbacks
+          omniauth_failure GET|POST /omniauth/failure(.:format)                                                              devise_token_auth/omniauth_callbacks#omniauth_failure
+                           GET      /api/v1/auth/:provider(.:format)                                                         redirect(301)
+              api_v1_users GET      /api/v1/users(.:format)                                                                  api/v1/users#index
+               api_v1_user GET      /api/v1/users/:id(.:format)                                                              api/v1/users#show
+              api_v1_posts GET      /api/v1/posts(.:format)                                                                  api/v1/posts#index
+                           POST     /api/v1/posts(.:format)                                                                  api/v1/posts#create
+               api_v1_post GET      /api/v1/posts/:id(.:format)                                                              api/v1/posts#show
+                           PATCH    /api/v1/posts/:id(.:format)                                                              api/v1/posts#update
+                           PUT      /api/v1/posts/:id(.:format)                                                              api/v1/posts#update
+                           DELETE   /api/v1/posts/:id(.:format)                                                              api/v1/posts#destroy
+           api_v1_comments POST     /api/v1/comments(.:format)                                                               api/v1/comments#create
+            api_v1_comment GET      /api/v1/comments/:id(.:format)                                                           api/v1/comments#show
+                           DELETE   /api/v1/comments/:id(.:format)                                                           api/v1/comments#destroy
+                    api_v1 POST     /api/v1/posts/:id/likes(.:format)                                                        api/v1/posts#like
+                           POST     /api/v1/comments/:id/likes(.:format)                                                     api/v1/comments#like
+                           GET      /api/v1/posts/:id/likes(.:format)                                                        api/v1/posts#likes
+                           GET      /api/v1/comments/:id/likes(.:format)                                                     api/v1/comments#likes
+              api_v1_liked GET      /api/v1/liked(.:format)                                                                  api/v1/posts#liked_posts
+        rails_service_blob GET      /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+ rails_blob_representation GET      /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+        rails_disk_service GET      /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+ update_rails_disk_service PUT      /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+      rails_direct_uploads POST     /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create

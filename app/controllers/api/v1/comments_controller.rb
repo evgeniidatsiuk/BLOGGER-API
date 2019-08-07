@@ -16,6 +16,17 @@ class Api::V1::CommentsController < ApplicationController
     end
   end
 
+  def update
+    if comment.update(comment_params)
+      render status: 201, json: {
+          success: true,
+          comment: comment
+      }
+    else
+      render_error(400, comment)
+    end
+  end
+
   def destroy
     if comment.destroy
       render status: 200, json: {
@@ -54,6 +65,7 @@ class Api::V1::CommentsController < ApplicationController
   def show
     render status: 200, json: {
       success: true,
+      comment: @comment,
       comments: @comment.comments,
       likes_count: @comment.likes.count,
       likes: @comment.likes
