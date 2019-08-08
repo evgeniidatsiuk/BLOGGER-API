@@ -46,14 +46,19 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    render status: 200, json: {
-      success: true,
-      post: @post,
-      likes_count: @post.likes.count,
-      comments: @post.comments,
-      comments_count: @post.comments.count
-    }
-  end
+      render status: 200, json: {
+        success: true,
+        post: {
+          id: @post.id,
+          user_id: @post.user_id,
+          title: @post.title,
+          body: @post.body,
+          likes_count: @post.likes.count,
+          comments: @post.comments,
+          comments_count: @post.comments.count
+        }
+      }
+    end
 
   def like
     if !@post.likes.find_by(user_id: current_user.id)
