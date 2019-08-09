@@ -54,6 +54,7 @@ class Api::V1::PostsController < ApplicationController
           title: @post.title,
           body: @post.body,
           likes_count: @post.likes.count,
+          likes: @post.likes,
           comments: @post.comments,
           comments_count: @post.comments.count
         }
@@ -74,13 +75,6 @@ class Api::V1::PostsController < ApplicationController
         success: true
       }
     end
-  end
-
-  def likes
-    render status: 200, json: {
-      success: true,
-      like: @post.likes
-    }
   end
 
   def liked_posts
