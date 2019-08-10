@@ -4,4 +4,6 @@ class Comment < ApplicationRecord
 
   has_many :likes,    as: :object, dependent: :destroy
   has_many :comments, as: :object, dependent: :destroy
+
+  validates :text, presence: true
 end
