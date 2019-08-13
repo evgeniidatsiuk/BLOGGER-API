@@ -55,7 +55,7 @@ class Api::V1::PostsController < ApplicationController
           body: @post.body,
           likes_count: @post.likes.count,
           likes: @post.likes,
-          comments: @post.comments,
+          comments: Comment.where(object_id: @post.id, object_type: 'Post').page(params[:page]).per(10),
           comments_count: @post.comments.count
         }
       }
