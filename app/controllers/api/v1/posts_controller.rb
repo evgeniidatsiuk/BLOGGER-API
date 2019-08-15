@@ -17,7 +17,7 @@ class Api::V1::PostsController < ApplicationController
    end
 
   def index
-    @posts = Post.page(params[:page]).per(10)
+    @posts = Post.page(params[:page]).per(10).order('created_at DESC')
     render status: 200, json: {
       success: true,
       posts: @posts
@@ -55,7 +55,7 @@ class Api::V1::PostsController < ApplicationController
           body: @post.body,
           likes_count: @post.likes.count,
           likes: @post.likes,
-          comments: Comment.where(object_id: @post.id, object_type: 'Post').page(params[:page]).per(10),
+          comments: Comment.where(object_id: @post.id, object_type: 'Post').page(params[:page]).per(10).order('created_at DESC'),
           comments_count: @post.comments.count
         }
       }
