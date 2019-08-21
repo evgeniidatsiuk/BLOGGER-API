@@ -66,7 +66,7 @@ class Api::V1::CommentsController < ApplicationController
     render status: 200, json: {
       success: true,
       comment: @comment,
-      comments: Comment.where(object_id: @comment.id, object_type: 'Comment').page(params[:page]).per(10).order('created_at DESC'),
+      comments: Comment.where(object_id: @comment.id, object_type: 'Comment').page(params[:page]).per(10).order('created_at ASC'),
       likes_count: @comment.likes.count,
       likes: @comment.likes
     }
