@@ -11,5 +11,6 @@ class User < ActiveRecord::Base
   has_many :posts,               dependent: :destroy
   has_many :likes, as: :object,  dependent: :destroy
   has_many :comments,            dependent: :destroy
+  has_many :notifications,       dependent: :destroy
 
 end

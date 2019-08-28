@@ -5,6 +5,7 @@ class Post < ApplicationRecord
 
   has_many :likes,    as: :object,  dependent: :destroy
   has_many :comments, as: :object,  dependent: :destroy
+  has_many :notifications, as: :object, dependent: :destroy
 
   validates :title, :body, presence: true
 end
