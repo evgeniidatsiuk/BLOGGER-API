@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get 'comments/:id/likes',            to: 'comments#likes'
       get 'liked',                         to: 'posts#liked_posts'
       get 'notifications/index'
+      put 'notifications/read',            to: 'notifications#read'
+      put 'notifications/unread',          to: 'notifications#unread'
     end
   end
 end
