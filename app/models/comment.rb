@@ -12,6 +12,6 @@ class Comment < ApplicationRecord
   validates :text, presence: true
 
   def create_notification
-    Notification.create(object_type: 'Comment', object_id: id, text: 'Comment created!', user_id: user.id)
+    Notification.create(object_type: 'Comment', object_id: id, text: text, user_id: user.id)
   end
 end

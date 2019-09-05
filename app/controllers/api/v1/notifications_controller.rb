@@ -2,8 +2,8 @@
 
 class Api::V1::NotificationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_notification, except: format(w, index)
-  
+  before_action :find_notification, except: w%[index]
+
   def index
     @notifications = current_user.notifications
     render status: 200, json: {
