@@ -2,7 +2,7 @@
 
 class Api::V1::NotificationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_notification, except: w%[index]
+  before_action :find_notification, except: %i[index]
 
   def index
     @notifications = current_user.notifications
